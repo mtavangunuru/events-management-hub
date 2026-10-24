@@ -1,0 +1,1449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Package Booking | Nuustar Events</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+
+        /* ==========================================
+           PACKAGE BOOKING PAGE
+        ========================================== */
+
+        .booking-page {
+            padding: 70px 0;
+            background: var(--gray-light);
+        }
+
+        .booking-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        /* ==========================================
+           HEADER
+        ========================================== */
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .booking-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--blue);
+            margin-bottom: 12px;
+        }
+
+        .booking-header p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+
+        /* ==========================================
+           MAIN GRID
+        ========================================== */
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+
+        /* ==========================================
+           CARDS
+        ========================================== */
+
+        .booking-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 35px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 25px;
+        }
+
+        .booking-card h2 {
+            color: var(--blue);
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+
+        /* ==========================================
+           PROGRESS
+        ========================================== */
+
+        .booking-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 40px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .progress-step.active .progress-circle {
+            background: var(--yellow);
+            color: var(--blue);
+        }
+
+        .progress-label {
+            margin-left: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .progress-line {
+            width: 60px;
+            height: 2px;
+            background: var(--border);
+            margin: 0 10px;
+        }
+
+
+        /* ==========================================
+           FORM
+        ========================================== */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--blue);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(11,45,92,.08);
+        }
+
+
+        /* ==========================================
+           SUMMARY CARD
+        ========================================== */
+
+        .summary-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 30px;
+        }
+
+        .summary-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--blue);
+            margin-bottom: 25px;
+        }
+
+        .package-highlight {
+            background: var(--blue);
+            color: var(--white);
+            padding: 22px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .package-highlight h3 {
+            color: var(--yellow);
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .package-highlight p {
+            margin: 0;
+            font-size: 13px;
+            opacity: .85;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .summary-row span:first-child {
+            color: var(--gray);
+        }
+
+        .summary-row span:last-child {
+            color: var(--blue);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .summary-section {
+            margin-top: 22px;
+        }
+
+        .summary-section h3 {
+            color: var(--blue);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .summary-section ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .summary-section li {
+            color: var(--gray-dark);
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .summary-total {
+            border-top: 2px solid var(--blue);
+            margin-top: 25px;
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-total strong {
+            color: var(--blue);
+        }
+
+        .summary-total span {
+            color: var(--yellow-dark);
+            font-size: 22px;
+            font-weight: 800;
+            text-align: right;
+        }
+
+
+        /* ==========================================
+           AGREEMENT
+        ========================================== */
+
+        .agreement {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-top: 25px;
+        }
+
+        .agreement input {
+            margin-top: 4px;
+        }
+
+        .agreement label {
+            color: var(--gray-dark);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        /* ==========================================
+           ACTIONS
+        ========================================== */
+
+        .booking-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 13px 24px;
+            border: 2px solid var(--blue);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+
+        /* ==========================================
+           SECURITY NOTE
+        ========================================== */
+
+        .security-note {
+            margin-top: 20px;
+            background: var(--blue-light);
+            padding: 15px;
+            border-radius: 8px;
+            color: var(--blue);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .security-note i {
+            color: var(--yellow-dark);
+            margin-right: 6px;
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-card {
+                position: static;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .booking-page {
+                padding: 45px 0;
+            }
+
+            .booking-header h1 {
+                font-size: 32px;
+            }
+
+            .booking-card {
+                padding: 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+            .booking-progress {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .progress-label {
+                display: none;
+            }
+
+            .progress-line {
+                width: 35px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     NAVBAR
+================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span>NUU</span>STAR
+        <small>EVENTS</small>
+    </div>
+
+
+    <nav>
+
+        <a href="index.php">Home</a>
+
+        <a href="index.php#packages">Packages</a>
+
+        <a href="index.php#services">Services</a>
+
+        <a href="venues.php">Venues</a>
+
+        <a href="index.php#tickets">Tickets</a>
+
+        <a href="index.php#contact">Contact</a>
+
+        <a href="venue-booking.php" class="nav-btn">
+            Book Your Event
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==================================================
+     BOOKING PAGE
+================================================== -->
+
+<section class="booking-page">
+
+    <div class="booking-container">
+
+
+        <!-- HEADER -->
+
+        <div class="booking-header">
+
+            <h1>Complete Your Booking</h1>
+
+            <p>
+                Almost there! Please provide your contact
+                information so our team can review your
+                event requirements and contact you.
+            </p>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             PROGRESS
+        ================================================== -->
+
+        <div class="booking-progress">
+
+
+            <div class="progress-step">
+
+                <div class="progress-circle">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <span class="progress-label">
+                    Package
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div class="progress-step">
+
+                <div class="progress-circle">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <span class="progress-label">
+                    Customize
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div class="progress-step active">
+
+                <div class="progress-circle">
+                    3
+                </div>
+
+                <span class="progress-label">
+                    Booking
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div class="progress-step">
+
+                <div class="progress-circle">
+                    4
+                </div>
+
+                <span class="progress-label">
+                    Confirmation
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="booking-grid">
+
+
+            <!-- ==================================================
+                 LEFT: CUSTOMER FORM
+            ================================================== -->
+
+            <div>
+
+
+                <!-- PERSONAL INFORMATION -->
+
+                <div class="booking-card">
+
+                    <h2>
+                        <i class="fa-solid fa-user"></i>
+                        Your Information
+                    </h2>
+
+                    <p class="section-description">
+                        Please provide your contact details.
+                        We will use them to communicate with you
+                        about your event.
+                    </p>
+
+
+                    <div class="form-grid">
+
+
+                        <!-- FULL NAME -->
+
+                        <div class="form-group full-width">
+
+                            <label for="fullName">
+                                Full Name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text"
+                                   id="fullName"
+                                   placeholder="Enter your full name">
+
+                        </div>
+
+
+
+                        <!-- PHONE -->
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Phone Number
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="tel"
+                                   id="phone"
+                                   placeholder="e.g. 0624947668">
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   id="email"
+                                   placeholder="example@email.com">
+
+                        </div>
+
+
+
+                        <!-- WHATSAPP -->
+
+                        <div class="form-group">
+
+                            <label for="whatsapp">
+                                WhatsApp Number
+                            </label>
+
+                            <input type="tel"
+                                   id="whatsapp"
+                                   placeholder="If different from phone">
+
+                        </div>
+
+
+
+                        <!-- CONTACT PREFERENCE -->
+
+                        <div class="form-group">
+
+                            <label for="contactMethod">
+                                Preferred Contact Method
+                            </label>
+
+                            <select id="contactMethod">
+
+                                <option value="">
+                                    Select preference
+                                </option>
+
+                                <option value="Phone">
+                                    Phone Call
+                                </option>
+
+                                <option value="WhatsApp">
+                                    WhatsApp
+                                </option>
+
+                                <option value="Email">
+                                    Email
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EVENT INFORMATION -->
+
+                <div class="booking-card">
+
+                    <h2>
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Event Information
+                    </h2>
+
+                    <p class="section-description">
+                        Confirm the main details of your event.
+                    </p>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="eventType">
+                                Event Type
+                            </label>
+
+                            <input type="text"
+                                   id="eventType"
+                                   readonly>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="eventDate">
+                                Event Date
+                            </label>
+
+                            <input type="date"
+                                   id="eventDate"
+                                   readonly>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="guests">
+                                Number of Guests
+                            </label>
+
+                            <input type="number"
+                                   id="guests"
+                                   readonly>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="location">
+                                Preferred Location
+                            </label>
+
+                            <input type="text"
+                                   id="location"
+                                   readonly>
+
+                        </div>
+
+
+
+                        <div class="form-group full-width">
+
+                            <label for="venueType">
+                                Preferred Venue Type
+                            </label>
+
+                            <input type="text"
+                                   id="venueType"
+                                   readonly>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ADDITIONAL INFORMATION -->
+
+                <div class="booking-card">
+
+                    <h2>
+                        <i class="fa-solid fa-message"></i>
+                        Additional Information
+                    </h2>
+
+                    <p class="section-description">
+                        Review the notes you provided during customization.
+                        You can add more information here.
+                    </p>
+
+
+                    <div class="form-group">
+
+                        <label for="notes">
+                            Special Requirements
+                        </label>
+
+                        <textarea id="notes"
+                                  placeholder="Additional information about your event..."></textarea>
+
+                    </div>
+
+
+
+                    <!-- AGREEMENT -->
+
+                    <div class="agreement">
+
+                        <input type="checkbox"
+                               id="agreement">
+
+                        <label for="agreement">
+
+                            I confirm that the information I have provided
+                            is correct and I understand that this booking
+                            is a request. Final pricing and availability
+                            will be confirmed by Nuustar Events.
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- SECURITY NOTE -->
+
+                    <div class="security-note">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        Your booking request does not require payment
+                        at this stage. Our team will contact you to
+                        confirm availability, requirements and final pricing.
+
+                    </div>
+
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="booking-actions">
+
+                        <a href="javascript:history.back()"
+                           class="back-button">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+
+                            Back
+
+                        </a>
+
+
+                        <button type="button"
+                                class="btn btn-primary"
+                                id="submitBooking">
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 RIGHT: BOOKING SUMMARY
+            ================================================== -->
+
+            <aside class="summary-card">
+
+                <h2>
+                    Booking Summary
+                </h2>
+
+
+                <!-- PACKAGE -->
+
+                <div class="package-highlight">
+
+                    <h3 id="summaryPackage">
+                        Gold Package
+                    </h3>
+
+                    <p>
+                        Selected event package
+                    </p>
+
+                </div>
+
+
+
+                <!-- SUMMARY -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Base Package
+                    </span>
+
+                    <span id="summaryBase">
+                        TZS 2,500,000
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Event Type
+                    </span>
+
+                    <span id="summaryEvent">
+                        Not specified
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Event Date
+                    </span>
+
+                    <span id="summaryDate">
+                        Not specified
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Guests
+                    </span>
+
+                    <span id="summaryGuests">
+                        Not specified
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Location
+                    </span>
+
+                    <span id="summaryLocation">
+                        Not specified
+                    </span>
+
+                </div>
+
+
+
+                <!-- INCLUDED -->
+
+                <div class="summary-section">
+
+                    <h3>
+                        Included Services
+                    </h3>
+
+                    <ul id="summaryIncluded">
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- ADDITIONAL -->
+
+                <div class="summary-section">
+
+                    <h3>
+                        Additional Services
+                    </h3>
+
+                    <ul id="summaryAdded">
+
+                        <li>
+                            No additional services
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="summary-total">
+
+                    <strong>
+                        Estimated Total
+                    </strong>
+
+                    <span id="summaryTotal">
+                        TZS 2,500,000
+                    </span>
+
+                </div>
+
+
+                <p class="summary-note">
+
+                    This is an estimated amount. Final pricing
+                    will be confirmed after Nuustar Events reviews
+                    your requirements.
+
+                </p>
+
+            </aside>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-about">
+
+            <div class="logo">
+                <span>NUU</span>STAR
+                <small>EVENTS</small>
+            </div>
+
+            <p>
+                Your event. Our passion.
+                We help you create memorable events
+                with professional planning and coordination.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="index.php">
+                Home
+            </a>
+
+            <a href="index.php#packages">
+                Packages
+            </a>
+
+            <a href="index.php#services">
+                Services
+            </a>
+
+            <a href="venues.php">
+                Venues
+            </a>
+
+            <a href="venue-booking.php">
+                Book Your Event
+            </a>
+
+        </div>
+
+
+        <div class="footer-services">
+
+            <h3>Our Services</h3>
+
+            <a href="#">
+                Venue Selection
+            </a>
+
+            <a href="#">
+                Event Decoration
+            </a>
+
+            <a href="#">
+                Catering
+            </a>
+
+            <a href="#">
+                Photography
+            </a>
+
+            <a href="#">
+                Videography
+            </a>
+
+        </div>
+
+
+        <div class="footer-contact">
+
+            <h3>Contact Us</h3>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                0624 947 668
+            </p>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                Dar es Salaam, Tanzania
+            </p>
+
+            <p>
+                <i class="fa-solid fa-globe"></i>
+                www.nuustar.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Nuustar Events. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+<script>
+document.getElementById("submitBooking").addEventListener("click", async function () {
+
+    /* =================================
+       GET CUSTOMER DETAILS
+    ================================= */
+
+    const fullName =
+        document.getElementById("fullName").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const whatsapp =
+        document.getElementById("whatsapp").value.trim();
+
+    const contactMethod =
+        document.getElementById("contactMethod").value;
+
+
+    /* =================================
+       GET PACKAGE CUSTOMIZATION
+    ================================= */
+
+    const savedCustomization =
+        localStorage.getItem("nuustarCustomization");
+
+
+    if (!savedCustomization) {
+
+        alert("Package information was not found. Please go back and customize your package.");
+
+        return;
+    }
+
+
+    const customization =
+        JSON.parse(savedCustomization);
+
+
+    /* =================================
+       GET SPECIAL REQUIREMENTS
+    ================================= */
+
+    let specialRequirements = "";
+
+    const specialField =
+        document.getElementById("specialRequirements");
+
+    const notesField =
+        document.getElementById("notes");
+
+
+    if (specialField) {
+
+        specialRequirements =
+            specialField.value.trim();
+
+    } else if (notesField) {
+
+        specialRequirements =
+            notesField.value.trim();
+
+    } else {
+
+        specialRequirements =
+            customization.notes || "";
+
+    }
+
+
+    /* =================================
+       AGREEMENT
+    ================================= */
+
+    const agreement =
+        document.getElementById("agreement");
+
+
+    if (agreement && !agreement.checked) {
+
+        alert("Please accept the booking agreement.");
+
+        return;
+    }
+
+
+    /* =================================
+       BASIC VALIDATION
+    ================================= */
+
+    if (!fullName) {
+
+        alert("Please enter your full name.");
+
+        return;
+    }
+
+
+    if (!phone) {
+
+        alert("Please enter your phone number.");
+
+        return;
+    }
+
+
+    /* =================================
+       DATA TO PHP
+    ================================= */
+
+    const bookingData = {
+
+        fullName: fullName,
+
+        phone: phone,
+
+        email: email,
+
+        whatsapp: whatsapp,
+
+        contactMethod: contactMethod,
+
+        packageCode:
+            customization.package,
+
+        packageName:
+            customization.packageName,
+
+        basePrice:
+            customization.basePrice,
+
+        eventType:
+            customization.eventType,
+
+        eventDate:
+            customization.eventDate,
+
+        guests:
+            customization.guests,
+
+        location:
+            customization.location,
+
+        venueType:
+            customization.venueType,
+
+        additionalServices:
+            customization.additionalServices || [],
+
+        estimatedTotal:
+            customization.estimatedTotal,
+
+        specialRequirements:
+            specialRequirements
+
+    };
+
+
+    /* =================================
+       SEND TO PHP
+    ================================= */
+
+    try {
+
+        const response =
+            await fetch(
+                "save-package-booking.php",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(bookingData)
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        /* =================================
+           SUCCESS
+        ================================= */
+
+        if (result.success) {
+
+            /* Keep confirmation page working */
+
+            const finalBooking = {
+
+                bookingId:
+                    result.bookingId,
+
+                customer: {
+
+                    fullName:
+                        fullName,
+
+                    phone:
+                        phone,
+
+                    email:
+                        email,
+
+                    whatsapp:
+                        whatsapp,
+
+                    contactMethod:
+                        contactMethod,
+
+                    specialRequirements:
+                        specialRequirements
+
+                },
+
+                package:
+                    customization,
+
+                submittedAt:
+                    new Date().toISOString()
+
+            };
+
+
+            localStorage.setItem(
+                "nuustarBooking",
+                JSON.stringify(finalBooking)
+            );
+
+
+            /* Go to confirmation */
+
+            window.location.href =
+                "booking-confirmation.php";
+
+
+        } else {
+
+            alert(
+                result.message ||
+                "Booking could not be saved."
+            );
+
+            console.error(result.error);
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Error:",
+            error
+        );
+
+        alert(
+            "Could not connect to the server. Make sure Apache and MySQL are running."
+        );
+
+    }
+
+});
+</script>
+
+
+</body>
+
+</html>

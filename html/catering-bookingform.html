@@ -1,0 +1,2147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catering Booking Form | Nuustar Events</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ==========================================
+           CATERING BOOKING FORM
+        ========================================== */
+
+        .catering-form-page {
+            min-height: 100vh;
+            background: var(--gray-light);
+            padding: 120px 20px 70px;
+        }
+
+        .form-container {
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            font-family: "Playfair Display", serif;
+            color: var(--blue);
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* PROGRESS */
+
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--blue-light);
+            color: var(--blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .step-circle.active {
+            background: var(--yellow);
+        }
+
+        .step-circle.completed {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .step-text {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gray);
+        }
+
+        .step-text.active {
+            color: var(--blue);
+        }
+
+        .progress-line {
+            width: 70px;
+            height: 2px;
+            background: var(--border);
+            margin: 0 10px;
+        }
+
+        /* GRID */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 0.75fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* CARD */
+
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 25px;
+        }
+
+        .form-card h2 {
+            color: var(--blue);
+            font-size: 21px;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--yellow);
+        }
+
+        .form-card h2 i {
+            color: var(--yellow-dark);
+            margin-right: 7px;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            font-family: "Montserrat", sans-serif;
+            font-size: 14px;
+            background: var(--white);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--yellow-dark);
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* EVENT DETAILS */
+
+        .event-note {
+            background: var(--blue-light);
+            padding: 15px;
+            border-radius: 8px;
+            color: var(--gray-dark);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .event-note i {
+            color: var(--yellow-dark);
+            margin-right: 5px;
+        }
+
+        /* ADDONS */
+
+        .addon-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .addon-card {
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 13px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .addon-card:hover {
+            border-color: var(--yellow-dark);
+            background: var(--yellow-light);
+        }
+
+        .addon-card input {
+            width: auto;
+            margin-top: 3px;
+            accent-color: var(--blue);
+        }
+
+        .addon-content {
+            font-size: 13px;
+            color: var(--gray-dark);
+            line-height: 1.5;
+        }
+
+        .addon-content strong {
+            display: block;
+            color: var(--blue);
+            margin-bottom: 3px;
+        }
+
+        .addon-content span {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        /* AGREEMENT */
+
+        .agreement {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 20px;
+            color: var(--gray-dark);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .agreement input {
+            width: auto;
+            margin-top: 3px;
+            accent-color: var(--blue);
+        }
+
+        /* BUTTON */
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+            background: var(--yellow);
+            color: var(--blue);
+            font-family: "Montserrat", sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: var(--yellow-dark);
+            transform: translateY(-2px);
+        }
+
+        /* SUMMARY */
+
+        .summary-card {
+            position: sticky;
+            top: 100px;
+        }
+
+        .selected-package {
+            background: var(--blue);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .selected-package .small-label {
+            display: block;
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 5px;
+        }
+
+        .selected-package h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            margin-bottom: 7px;
+        }
+
+        .selected-package p {
+            color: rgba(255,255,255,0.85);
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .summary-row span:first-child {
+            color: var(--gray);
+        }
+
+        .summary-row span:last-child {
+            color: var(--blue);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .price-box {
+            background: var(--yellow-light);
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 14px;
+        }
+
+        .price-row span:first-child {
+            color: var(--gray-dark);
+        }
+
+        .price-row span:last-child {
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(11,45,92,0.15);
+            margin-top: 10px;
+            padding-top: 13px;
+            color: var(--blue);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .summary-info {
+            background: var(--blue-light);
+            color: var(--gray-dark);
+            padding: 16px;
+            border-radius: 9px;
+            margin-top: 20px;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .summary-info i {
+            color: var(--yellow-dark);
+            margin-right: 5px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-card {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .catering-form-page {
+                padding: 100px 15px 50px;
+            }
+
+            .form-header h1 {
+                font-size: 32px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .addon-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-line {
+                width: 25px;
+            }
+
+            .step-text {
+                display: none;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <span>NUU</span>STAR
+                <small>EVENTS</small>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#packages">
+                    Packages
+                </a>
+
+                <a href="index.html#services">
+                    Services
+                </a>
+
+                <a href="venues.html">
+                    Venues
+                </a>
+
+                <a href="tickets.html">
+                    Tickets
+                </a>
+
+                <a href="index.html#contact">
+                    Contact
+                </a>
+
+                <a href="index.html#packages"
+                   class="nav-book-btn">
+                    Book Your Event
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="catering-form-page">
+
+
+        <div class="form-container">
+
+
+            <!-- HEADER -->
+
+            <div class="form-header">
+
+                <h1>Catering Booking Form</h1>
+
+                <p>
+                    Tell us about your event and catering needs.
+                    We will review your request and contact you to
+                    confirm the menu, availability and final price.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-container">
+
+                <div class="progress-step">
+
+                    <div class="step-circle completed">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <span class="step-text">
+                        Package
+                    </span>
+
+                </div>
+
+
+                <div class="progress-line"></div>
+
+
+                <div class="progress-step">
+
+                    <div class="step-circle active">
+                        2
+                    </div>
+
+                    <span class="step-text active">
+                        Booking Form
+                    </span>
+
+                </div>
+
+
+                <div class="progress-line"></div>
+
+
+                <div class="progress-step">
+
+                    <div class="step-circle">
+                        3
+                    </div>
+
+                    <span class="step-text">
+                        Confirmation
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRID -->
+
+            <div class="form-grid">
+
+
+                <!-- ==================================
+                     LEFT FORM
+                ================================== -->
+
+                <div>
+
+
+                    <!-- EVENT INFORMATION -->
+
+                    <div class="form-card">
+
+                        <h2>
+                            <i class="fa-solid fa-calendar-days"></i>
+                            Event Information
+                        </h2>
+
+
+                        <div class="event-note">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            Please provide accurate event details so
+                            we can prepare an appropriate catering proposal.
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="eventType">
+                                    Event Type
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select id="eventType" required>
+
+                                    <option value="">
+                                        Select Event Type
+                                    </option>
+
+                                    <option value="Wedding">
+                                        Wedding
+                                    </option>
+
+                                    <option value="Birthday">
+                                        Birthday
+                                    </option>
+
+                                    <option value="Anniversary">
+                                        Anniversary
+                                    </option>
+
+                                    <option value="Corporate Event">
+                                        Corporate Event
+                                    </option>
+
+                                    <option value="Meeting">
+                                        Meeting
+                                    </option>
+
+                                    <option value="Conference">
+                                        Conference
+                                    </option>
+
+                                    <option value="Party">
+                                        Party
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="guests">
+                                    Number of Guests
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="guests"
+                                    min="1"
+                                    placeholder="e.g. 100"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="eventDate">
+                                    Event Date
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="eventDate"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="eventTime">
+                                    Event Time
+                                </label>
+
+                                <input
+                                    type="time"
+                                    id="eventTime"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="location">
+                                    Event Location
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="location"
+                                    placeholder="e.g. Mbezi Beach, Dar es Salaam"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="serviceStyle">
+                                    Service Style
+                                </label>
+
+                                <select id="serviceStyle">
+
+                                    <option value="Buffet">
+                                        Buffet
+                                    </option>
+
+                                    <option value="Plated Meal">
+                                        Plated Meal
+                                    </option>
+
+                                    <option value="Tea Break">
+                                        Tea Break
+                                    </option>
+
+                                    <option value="Cocktail">
+                                        Cocktail Service
+                                    </option>
+
+                                    <option value="Not Sure">
+                                        Not Sure
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="foodPreference">
+                                    Food Preference
+                                </label>
+
+                                <select id="foodPreference">
+
+                                    <option value="Mixed Menu">
+                                        Mixed Menu
+                                    </option>
+
+                                    <option value="Traditional">
+                                        Traditional
+                                    </option>
+
+                                    <option value="International">
+                                        International
+                                    </option>
+
+                                    <option value="Vegetarian">
+                                        Vegetarian
+                                    </option>
+
+                                    <option value="Vegan">
+                                        Vegan
+                                    </option>
+
+                                    <option value="Custom">
+                                        Custom
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="budget">
+                                    Estimated Budget
+                                </label>
+
+                                <select id="budget">
+
+                                    <option value="">
+                                        Select Budget
+                                    </option>
+
+                                    <option value="Below TZS 1,000,000">
+                                        Below TZS 1,000,000
+                                    </option>
+
+                                    <option value="TZS 1,000,000 - 3,000,000">
+                                        TZS 1,000,000 - 3,000,000
+                                    </option>
+
+                                    <option value="TZS 3,000,000 - 5,000,000">
+                                        TZS 3,000,000 - 5,000,000
+                                    </option>
+
+                                    <option value="Above TZS 5,000,000">
+                                        Above TZS 5,000,000
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADDITIONAL SERVICES -->
+
+                    <div class="form-card">
+
+                        <h2>
+                            <i class="fa-solid fa-plus"></i>
+                            Additional Services
+                        </h2>
+
+
+                        <div class="addon-grid">
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Event Cake"
+                                    data-price="150000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Event Cake
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 150,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Drinks Station"
+                                    data-price="100000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Drinks Station
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 100,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Dessert Station"
+                                    data-price="150000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Dessert Station
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 150,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Tea & Coffee Station"
+                                    data-price="100000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Tea & Coffee Station
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 100,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Waiter Service"
+                                    data-price="200000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Waiter Service
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 200,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Table Setup"
+                                    data-price="150000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Table Setup
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 150,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Food Delivery"
+                                    data-price="100000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Food Delivery
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 100,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="addon-card">
+
+                                <input
+                                    type="checkbox"
+                                    class="addon"
+                                    value="Takeaway Packaging"
+                                    data-price="100000"
+                                >
+
+                                <span class="addon-content">
+
+                                    <strong>
+                                        Takeaway Packaging
+                                    </strong>
+
+                                    <span>
+                                        Estimated +TZS 100,000
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CUSTOMER -->
+
+                    <div class="form-card">
+
+                        <h2>
+                            <i class="fa-solid fa-user"></i>
+                            Customer Information
+                        </h2>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="fullName">
+                                    Full Name
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="fullName"
+                                    placeholder="Enter your full name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="phone">
+                                    Phone Number
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    placeholder="e.g. 0624947668"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="whatsapp">
+                                    WhatsApp Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="whatsapp"
+                                    placeholder="e.g. 0624947668"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="example@email.com"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="notes">
+                                Special Requirements / Menu Requests
+                            </label>
+
+                            <textarea
+                                id="notes"
+                                placeholder="Tell us about special dishes, dietary requirements, preferred foods, allergies, children's meals, drinks or any other requirements..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <label class="agreement">
+
+                            <input
+                                type="checkbox"
+                                id="agreement"
+                            >
+
+                            <span>
+                                I understand that this is a catering request
+                                and the displayed total is an estimate.
+                                Nuustar Events will contact me to confirm
+                                availability, menu and final pricing.
+                            </span>
+
+                        </label>
+
+
+                        <button
+                            type="button"
+                            class="submit-btn"
+                            onclick="submitCateringForm()"
+                        >
+
+                            Submit Catering Request
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     RIGHT SUMMARY
+                ================================== -->
+
+                <div>
+
+                    <div class="form-card summary-card">
+
+                        <h2>
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            Booking Summary
+                        </h2>
+
+
+                        <div class="selected-package">
+
+                            <span class="small-label">
+                                Selected Catering Package
+                            </span>
+
+                            <h3 id="summaryPackage">
+                                Standard Catering
+                            </h3>
+
+                            <p id="summaryDescription">
+                                Great for birthdays and social events.
+                            </p>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Price / Person
+                            </span>
+
+                            <span id="summaryPrice">
+                                TZS 25,000
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Guests
+                            </span>
+
+                            <span id="summaryGuests">
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Event Type
+                            </span>
+
+                            <span id="summaryEvent">
+                                Not selected
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Event Date
+                            </span>
+
+                            <span id="summaryDate">
+                                Not selected
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Location
+                            </span>
+
+                            <span id="summaryLocation">
+                                Not selected
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Service Style
+                            </span>
+
+                            <span id="summaryStyle">
+                                Buffet
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-box">
+
+                            <div class="price-row">
+
+                                <span>
+                                    Catering
+                                </span>
+
+                                <span id="foodCost">
+                                    TZS 0
+                                </span>
+
+                            </div>
+
+
+                            <div class="price-row">
+
+                                <span>
+                                    Additional Services
+                                </span>
+
+                                <span id="addonsCost">
+                                    TZS 0
+                                </span>
+
+                            </div>
+
+
+                            <div class="total-row">
+
+                                <span>
+                                    Estimated Total
+                                </span>
+
+                                <span id="estimatedTotal">
+                                    TZS 0
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="summary-info">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            This is an estimated amount.
+                            Final pricing will be confirmed by
+                            Nuustar Events after reviewing your
+                            menu, guest count and event requirements.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <div class="logo">
+                    <span>NUU</span>STAR
+                    <small>EVENTS</small>
+                </div>
+
+                <p>
+                    Creating beautiful, memorable and professionally
+                    organized events for every special occasion.
+                </p>
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#packages">
+                    Packages
+                </a>
+
+                <a href="index.html#services">
+                    Services
+                </a>
+
+                <a href="venues.html">
+                    Venues
+                </a>
+
+                <a href="tickets.html">
+                    Tickets
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Our Services
+                </h4>
+
+                <a href="venues.html">
+                    Venue Selection
+                </a>
+
+                <a href="catering.html">
+                    Catering
+                </a>
+
+                <a href="index.html#services">
+                    Decoration
+                </a>
+
+                <a href="index.html#services">
+                    Photography
+                </a>
+
+                <a href="index.html#services">
+                    Videography
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact Us
+                </h4>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    0624 947 668
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Dar es Salaam, Tanzania
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-globe"></i>
+                    www.nuustar.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    &copy; 2026 Nuustar Events.
+                    All Rights Reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* ==========================================
+           CATERING PACKAGES
+        ========================================== */
+
+        const cateringPackages = {
+
+            basic: {
+                name: "Basic Catering",
+                price: 15000,
+                description:
+                    "Suitable for small gatherings and meetings."
+            },
+
+            standard: {
+                name: "Standard Catering",
+                price: 25000,
+                description:
+                    "Great for birthdays and social events."
+            },
+
+            premium: {
+                name: "Premium Catering",
+                price: 40000,
+                description:
+                    "Elegant menus for weddings and special events."
+            },
+
+            custom: {
+                name: "Custom Catering",
+                price: 0,
+                description:
+                    "A customized catering proposal prepared for your event."
+            }
+
+        };
+
+
+        /* ==========================================
+           GET PACKAGE FROM URL
+        ========================================== */
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        let selectedPackage =
+            urlParams.get("package") || "standard";
+
+
+        if (!cateringPackages[selectedPackage]) {
+            selectedPackage = "standard";
+        }
+
+
+        const packageData =
+            cateringPackages[selectedPackage];
+
+
+        /* ==========================================
+           CURRENCY
+        ========================================== */
+
+        function formatCurrency(amount) {
+
+            return "TZS " +
+                Number(amount).toLocaleString("en-TZ");
+
+        }
+
+
+        /* ==========================================
+           DISPLAY PACKAGE
+        ========================================== */
+
+        document.getElementById(
+            "summaryPackage"
+        ).textContent =
+            packageData.name;
+
+
+        document.getElementById(
+            "summaryDescription"
+        ).textContent =
+            packageData.description;
+
+
+        document.getElementById(
+            "summaryPrice"
+        ).textContent =
+            packageData.price > 0
+                ? formatCurrency(packageData.price)
+                : "Custom";
+
+
+        /* ==========================================
+           UPDATE SUMMARY
+        ========================================== */
+
+        function updateSummary() {
+
+            const guests =
+                Number(
+                    document.getElementById("guests").value
+                ) || 0;
+
+
+            const eventType =
+                document.getElementById("eventType").value;
+
+
+            const location =
+                document.getElementById("location").value;
+
+
+            const serviceStyle =
+                document.getElementById("serviceStyle").value;
+
+
+            /* Catering cost */
+
+            const foodCost =
+                packageData.price * guests;
+
+
+            /* Add-ons */
+
+            let addonsCost = 0;
+
+            document
+                .querySelectorAll(".addon:checked")
+                .forEach(function(addon) {
+
+                    addonsCost +=
+                        Number(addon.dataset.price);
+
+                });
+
+
+            const estimatedTotal =
+                foodCost + addonsCost;
+
+
+            /* Guests */
+
+            document.getElementById(
+                "summaryGuests"
+            ).textContent =
+                guests || "0";
+
+
+            /* Event */
+
+            document.getElementById(
+                "summaryEvent"
+            ).textContent =
+                eventType || "Not selected";
+
+
+            /* Location */
+
+            document.getElementById(
+                "summaryLocation"
+            ).textContent =
+                location || "Not selected";
+
+
+            /* Service Style */
+
+            document.getElementById(
+                "summaryStyle"
+            ).textContent =
+                serviceStyle;
+
+
+            /* Date */
+
+            const dateValue =
+                document.getElementById(
+                    "eventDate"
+                ).value;
+
+
+            if (dateValue) {
+
+                const date =
+                    new Date(
+                        dateValue + "T00:00:00"
+                    );
+
+
+                document.getElementById(
+                    "summaryDate"
+                ).textContent =
+                    date.toLocaleDateString(
+                        "en-GB",
+                        {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric"
+                        }
+                    );
+
+            } else {
+
+                document.getElementById(
+                    "summaryDate"
+                ).textContent =
+                    "Not selected";
+
+            }
+
+
+            /* Costs */
+
+            document.getElementById(
+                "foodCost"
+            ).textContent =
+                formatCurrency(foodCost);
+
+
+            document.getElementById(
+                "addonsCost"
+            ).textContent =
+                formatCurrency(addonsCost);
+
+
+            document.getElementById(
+                "estimatedTotal"
+            ).textContent =
+                formatCurrency(estimatedTotal);
+
+        }
+
+
+        /* ==========================================
+           LISTENERS
+        ========================================== */
+
+        document.getElementById("guests")
+            .addEventListener(
+                "input",
+                updateSummary
+            );
+
+
+        document.getElementById("eventType")
+            .addEventListener(
+                "change",
+                updateSummary
+            );
+
+
+        document.getElementById("eventDate")
+            .addEventListener(
+                "change",
+                updateSummary
+            );
+
+
+        document.getElementById("location")
+            .addEventListener(
+                "input",
+                updateSummary
+            );
+
+
+        document.getElementById("serviceStyle")
+            .addEventListener(
+                "change",
+                updateSummary
+            );
+
+
+        document.querySelectorAll(".addon")
+            .forEach(function(addon) {
+
+                addon.addEventListener(
+                    "change",
+                    updateSummary
+                );
+
+            });
+
+
+        /* ==========================================
+           SUBMIT
+        ========================================== */
+
+        function submitCateringForm() {
+
+            const eventType =
+                document.getElementById(
+                    "eventType"
+                ).value;
+
+
+            const guests =
+                Number(
+                    document.getElementById(
+                        "guests"
+                    ).value
+                );
+
+
+            const eventDate =
+                document.getElementById(
+                    "eventDate"
+                ).value;
+
+
+            const eventTime =
+                document.getElementById(
+                    "eventTime"
+                ).value;
+
+
+            const location =
+                document.getElementById(
+                    "location"
+                ).value.trim();
+
+
+            const serviceStyle =
+                document.getElementById(
+                    "serviceStyle"
+                ).value;
+
+
+            const foodPreference =
+                document.getElementById(
+                    "foodPreference"
+                ).value;
+
+
+            const budget =
+                document.getElementById(
+                    "budget"
+                ).value;
+
+
+            const fullName =
+                document.getElementById(
+                    "fullName"
+                ).value.trim();
+
+
+            const phone =
+                document.getElementById(
+                    "phone"
+                ).value.trim();
+
+
+            const whatsapp =
+                document.getElementById(
+                    "whatsapp"
+                ).value.trim();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const notes =
+                document.getElementById(
+                    "notes"
+                ).value.trim();
+
+
+            const agreement =
+                document.getElementById(
+                    "agreement"
+                ).checked;
+
+
+            /* ======================================
+               VALIDATION
+            ====================================== */
+
+            if (!eventType) {
+
+                alert(
+                    "Please select your event type."
+                );
+
+                return;
+            }
+
+
+            if (!guests || guests < 1) {
+
+                alert(
+                    "Please enter the number of guests."
+                );
+
+                return;
+            }
+
+
+            if (!eventDate) {
+
+                alert(
+                    "Please select the event date."
+                );
+
+                return;
+            }
+
+
+            if (!location) {
+
+                alert(
+                    "Please enter the event location."
+                );
+
+                return;
+            }
+
+
+            if (!fullName) {
+
+                alert(
+                    "Please enter your full name."
+                );
+
+                return;
+            }
+
+
+            if (!phone) {
+
+                alert(
+                    "Please enter your phone number."
+                );
+
+                return;
+            }
+
+
+            if (!agreement) {
+
+                alert(
+                    "Please accept the agreement before submitting."
+                );
+
+                return;
+            }
+
+
+            /* ======================================
+               ADDITIONAL SERVICES
+            ====================================== */
+
+            const selectedAddons = [];
+
+            let addonsTotal = 0;
+
+
+            document
+                .querySelectorAll(".addon:checked")
+                .forEach(function(addon) {
+
+                    const price =
+                        Number(
+                            addon.dataset.price
+                        );
+
+
+                    selectedAddons.push({
+
+                        name:
+                            addon.value,
+
+                        price:
+                            price
+
+                    });
+
+
+                    addonsTotal += price;
+
+                });
+
+
+            /* ======================================
+               COST
+            ====================================== */
+
+            const foodCost =
+                packageData.price * guests;
+
+
+            const estimatedTotal =
+                foodCost + addonsTotal;
+
+
+            /* ======================================
+               REQUEST REFERENCE
+            ====================================== */
+
+            const requestId =
+                "CAT-" + Date.now();
+
+
+            /* ======================================
+               REQUEST OBJECT
+            ====================================== */
+
+            const cateringRequest = {
+
+                requestId: requestId,
+
+                package: {
+
+                    code:
+                        selectedPackage,
+
+                    name:
+                        packageData.name,
+
+                    pricePerPerson:
+                        packageData.price
+
+                },
+
+
+                event: {
+
+                    type:
+                        eventType,
+
+                    guests:
+                        guests,
+
+                    date:
+                        eventDate,
+
+                    time:
+                        eventTime,
+
+                    location:
+                        location,
+
+                    serviceStyle:
+                        serviceStyle,
+
+                    foodPreference:
+                        foodPreference,
+
+                    budget:
+                        budget
+
+                },
+
+
+                additionalServices:
+                    selectedAddons,
+
+
+                pricing: {
+
+                    foodCost:
+                        foodCost,
+
+                    addonsTotal:
+                        addonsTotal,
+
+                    estimatedTotal:
+                        estimatedTotal
+
+                },
+
+
+                customer: {
+
+                    fullName:
+                        fullName,
+
+                    phone:
+                        phone,
+
+                    whatsapp:
+                        whatsapp,
+
+                    email:
+                        email
+
+                },
+
+
+                notes:
+                    notes,
+
+
+                status:
+                    "Pending",
+
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            /* ======================================
+               SAVE
+            ====================================== */
+
+            localStorage.setItem(
+                "nuustarCateringRequest",
+                JSON.stringify(cateringRequest)
+            );
+
+
+            /* ======================================
+               CONFIRMATION PAGE
+            ====================================== */
+
+            window.location.href =
+                "catering-confirmation.html";
+
+        }
+
+
+        /* ==========================================
+           INITIAL SUMMARY
+        ========================================== */
+
+        updateSummary();
+
+    </script>
+
+</body>
+</html>

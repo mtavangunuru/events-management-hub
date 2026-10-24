@@ -1,0 +1,1649 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cakes | Nuustar Events</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* ==========================================
+           CAKES PAGE
+        ========================================== */
+
+        .cakes-page {
+            background: var(--gray-light);
+            min-height: 100vh;
+        }
+
+
+        /* HERO */
+
+        .cakes-hero {
+
+            min-height: 430px;
+
+            padding:
+                120px 20px 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(7, 31, 64, 0.82),
+                    rgba(11, 45, 92, 0.82)
+                ),
+                url("images/cake-banner.webp")
+                center / cover no-repeat;
+        }
+
+
+        .cakes-hero-content {
+
+            max-width: 780px;
+
+            color: var(--white);
+
+        }
+
+
+        .cake-icon {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin:
+                0 auto 20px;
+
+            border-radius: 50%;
+
+            background: var(--yellow);
+
+            color: var(--blue);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+        }
+
+
+        .cakes-hero h1 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 50px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .cakes-hero p {
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            color:
+                rgba(255,255,255,0.9);
+
+        }
+
+
+        /* INTRO */
+
+        .cakes-intro {
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding:
+                70px 20px 35px;
+
+            text-align: center;
+
+        }
+
+
+        .cakes-intro h2 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            color: var(--blue);
+
+            font-size: 34px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .cakes-intro p {
+
+            color: var(--gray);
+
+            line-height: 1.8;
+
+        }
+
+
+        /* CAKE GALLERY */
+
+        .cake-gallery {
+
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            padding:
+                20px;
+
+        }
+
+
+        .cake-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .cake-card {
+
+            background:
+                var(--white);
+
+            border-radius:
+                var(--radius);
+
+            overflow: hidden;
+
+            box-shadow:
+                var(--shadow-sm);
+
+            transition:
+                var(--transition);
+
+        }
+
+
+        .cake-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                var(--shadow-md);
+
+        }
+
+
+        .cake-image {
+
+            height: 250px;
+
+            overflow: hidden;
+
+        }
+
+
+        .cake-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                var(--transition);
+
+        }
+
+
+        .cake-card:hover
+        .cake-image img {
+
+            transform:
+                scale(1.05);
+
+        }
+
+
+        .cake-content {
+
+            padding: 22px;
+
+        }
+
+
+        .cake-content h3 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            color:
+                var(--blue);
+
+            font-size: 23px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .cake-content p {
+
+            color:
+                var(--gray);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .cake-tag {
+
+            display: inline-block;
+
+            padding:
+                6px 10px;
+
+            border-radius: 20px;
+
+            background:
+                var(--yellow-light);
+
+            color:
+                var(--blue);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-right: 5px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        /* FLAVOURS */
+
+        .flavours-section {
+
+            max-width: 1150px;
+
+            margin:
+                65px auto 0;
+
+            padding:
+                0 20px;
+
+        }
+
+
+        .section-heading {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            color:
+                var(--blue);
+
+            font-size: 33px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .section-heading p {
+
+            color:
+                var(--gray);
+
+        }
+
+
+        .flavour-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .flavour-card {
+
+            background:
+                var(--white);
+
+            padding:
+                22px 18px;
+
+            border-radius:
+                var(--radius);
+
+            text-align: center;
+
+            box-shadow:
+                var(--shadow-sm);
+
+            transition:
+                var(--transition);
+
+        }
+
+
+        .flavour-card:hover {
+
+            transform:
+                translateY(-4px);
+
+        }
+
+
+        .flavour-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            margin:
+                0 auto 12px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                var(--blue-light);
+
+            color:
+                var(--yellow-dark);
+
+            font-size: 22px;
+
+        }
+
+
+        .flavour-card h3 {
+
+            color:
+                var(--blue);
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .flavour-card p {
+
+            color:
+                var(--gray);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* PRICE */
+
+        .pricing-section {
+
+            max-width: 1150px;
+
+            margin:
+                65px auto 0;
+
+            padding:
+                0 20px;
+
+        }
+
+
+        .pricing-box {
+
+            background:
+                var(--white);
+
+            border-radius:
+                var(--radius);
+
+            box-shadow:
+                var(--shadow-sm);
+
+            overflow: hidden;
+
+        }
+
+
+        .pricing-header {
+
+            background:
+                var(--blue);
+
+            color:
+                var(--white);
+
+            padding:
+                28px;
+
+            text-align: center;
+
+        }
+
+
+        .pricing-header h2 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .pricing-header p {
+
+            color:
+                rgba(255,255,255,0.85);
+
+            font-size: 13px;
+
+        }
+
+
+        .price-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+
+        .price-table th,
+        .price-table td {
+
+            padding:
+                15px 18px;
+
+            text-align: left;
+
+            border-bottom:
+                1px solid var(--border);
+
+            font-size: 14px;
+
+        }
+
+
+        .price-table th {
+
+            background:
+                var(--yellow-light);
+
+            color:
+                var(--blue);
+
+            font-weight: 800;
+
+        }
+
+
+        .price-table td {
+
+            color:
+                var(--gray-dark);
+
+        }
+
+
+        .price-table td:last-child {
+
+            font-weight: 800;
+
+            color:
+                var(--blue);
+
+        }
+
+
+        .price-note {
+
+            padding:
+                20px 25px;
+
+            background:
+                var(--gray-light);
+
+            color:
+                var(--gray-dark);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* CUSTOM */
+
+        .custom-section {
+
+            max-width: 1150px;
+
+            margin:
+                65px auto 0;
+
+            padding:
+                0 20px;
+
+        }
+
+
+        .custom-box {
+
+            background:
+                var(--yellow);
+
+            border-radius:
+                var(--radius);
+
+            padding:
+                40px 30px;
+
+            text-align: center;
+
+            color:
+                var(--blue);
+
+        }
+
+
+        .custom-box h2 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 31px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .custom-box p {
+
+            max-width: 700px;
+
+            margin:
+                0 auto 22px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .custom-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background:
+                var(--blue);
+
+            color:
+                var(--white);
+
+            padding:
+                14px 23px;
+
+            border-radius:
+                8px;
+
+            text-decoration:
+                none;
+
+            font-weight:
+                800;
+
+            transition:
+                var(--transition);
+
+        }
+
+
+        .custom-btn:hover {
+
+            background:
+                var(--blue-dark);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+
+            .cake-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .flavour-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .cakes-hero h1 {
+
+                font-size:
+                    35px;
+
+            }
+
+
+            .cake-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .flavour-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .pricing-box {
+
+                overflow-x:
+                    auto;
+
+            }
+
+
+            .price-table {
+
+                min-width:
+                    650px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="index.php" class="logo">
+                <span>NUU</span>STAR
+                <small>EVENTS</small>
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="index.php">
+                    Home
+                </a>
+
+                <a href="index.php#packages">
+                    Packages
+                </a>
+
+                <a href="index.php#services">
+                    Services
+                </a>
+
+                <a href="venues.php">
+                    Venues
+                </a>
+
+                <a href="tickets.php">
+                    Tickets
+                </a>
+
+                <a href="index.php#contact">
+                    Contact
+                </a>
+
+                <a
+                    href="index.php#packages"
+                    class="nav-book-btn"
+                >
+                    Book Your Event
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="cakes-page">
+
+
+        <!-- HERO -->
+
+        <section class="cakes-hero">
+
+            <div class="cakes-hero-content">
+
+                <div class="cake-icon">
+
+                    <i class="fa-solid fa-cake-candles"></i>
+
+                </div>
+
+
+                <h1>
+                    Beautiful Cakes For Every Celebration
+                </h1>
+
+
+                <p>
+                    From birthdays and weddings to anniversaries
+                    and corporate celebrations, choose from our
+                    selection of cake styles and flavours.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- INTRO -->
+
+        <section class="cakes-intro">
+
+            <h2>
+                Cake Samples
+            </h2>
+
+            <p>
+                These are sample designs to help you choose the
+                style you prefer. Designs, colours, flavours and
+                decorations can be customized for your event.
+            </p>
+
+        </section>
+
+
+        <!-- CAKE GALLERY -->
+
+        <section class="cake-gallery">
+
+            <div class="cake-grid">
+
+
+                <!-- CAKE 1 -->
+
+                <div class="cake-card">
+
+                    <div class="cake-image">
+
+                        <img
+                            src="images/wedding1.jpeg"
+                            alt="Elegant wedding cake"
+                        >
+
+                    </div>
+
+
+                    <div class="cake-content">
+
+                        <h3>
+                            Elegant Wedding Cake
+                        </h3>
+
+                        <p>
+                            A sophisticated multi-layer cake suitable
+                            for weddings and formal celebrations.
+                        </p>
+
+                        <span class="cake-tag">
+                            Wedding
+                        </span>
+
+                        <span class="cake-tag">
+                            Elegant
+                        </span>
+
+                        <span class="cake-tag">
+                            Custom Design
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAKE 2 -->
+
+                <div class="cake-card">
+
+                    <div class="cake-image">
+
+                        <img
+                            src="images/lemon.webp"
+                            alt="Birthday celebration cake"
+                        >
+
+                    </div>
+
+
+                    <div class="cake-content">
+
+                        <h3>
+                            Birthday Celebration Cake
+                        </h3>
+
+                        <p>
+                            Colourful and creative cakes designed
+                            for birthdays of all ages.
+                        </p>
+
+                        <span class="cake-tag">
+                            Birthday
+                        </span>
+
+                        <span class="cake-tag">
+                            Fun
+                        </span>
+
+                        <span class="cake-tag">
+                            Custom Design
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAKE 3 -->
+
+                <div class="cake-card">
+
+                    <div class="cake-image">
+
+                        <img
+                            src="images/chocolate.webp"
+                            alt="Chocolate cake"
+                        >
+
+                    </div>
+
+
+                    <div class="cake-content">
+
+                        <h3>
+                            Chocolate Celebration Cake
+                        </h3>
+
+                        <p>
+                            Rich chocolate flavours with beautiful
+                            finishing for special celebrations.
+                        </p>
+
+                        <span class="cake-tag">
+                            Chocolate
+                        </span>
+
+                        <span class="cake-tag">
+                            Birthday
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAKE 4 -->
+
+                <div class="cake-card">
+
+                    <div class="cake-image">
+
+                        <img
+                            src="images/vannilla.webp"
+                            alt="Vanilla celebration cake"
+                        >
+
+                    </div>
+
+
+                    <div class="cake-content">
+
+                        <h3>
+                            Classic Vanilla Cake
+                        </h3>
+
+                        <p>
+                            A soft and timeless vanilla cake suitable
+                            for different types of events.
+                        </p>
+
+                        <span class="cake-tag">
+                            Vanilla
+                        </span>
+
+                        <span class="cake-tag">
+                            Classic
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAKE 5 -->
+
+                <div class="cake-card">
+
+                    <div class="cake-image">
+
+                        <img
+                            src="images/Redvelvet.webp"
+                            alt="Red velvet cake"
+                        >
+
+                    </div>
+
+
+                    <div class="cake-content">
+
+                        <h3>
+                            Red Velvet Cake
+                        </h3>
+
+                        <p>
+                            A rich red velvet flavour finished with
+                            a premium cream-style decoration.
+                        </p>
+
+                        <span class="cake-tag">
+                            Red Velvet
+                        </span>
+
+                        <span class="cake-tag">
+                            Premium
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAKE 6 -->
+
+                <div class="cake-card">
+
+                    <div class="cake-image">
+
+                        <img
+                            src="images/wedding2.jpeg"
+                            alt="Custom themed cake"
+                        >
+
+                    </div>
+
+
+                    <div class="cake-content">
+
+                        <h3>
+                            Custom Themed Cake
+                        </h3>
+
+                        <p>
+                            Tell us your theme, colours or design idea
+                            and we can prepare a customized cake concept.
+                        </p>
+
+                        <span class="cake-tag">
+                            Custom
+                        </span>
+
+                        <span class="cake-tag">
+                            Any Occasion
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FLAVOURS -->
+
+        <section class="flavours-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Available Flavours
+                </h2>
+
+                <p>
+                    Choose your preferred flavour when making your request.
+                </p>
+
+            </div>
+
+
+            <div class="flavour-grid">
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-cake-candles"></i>
+                    </div>
+
+                    <h3>
+                        Vanilla
+                    </h3>
+
+                    <p>
+                        Light, soft and classic.
+                    </p>
+
+                </div>
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-cookie-bite"></i>
+                    </div>
+
+                    <h3>
+                        Chocolate
+                    </h3>
+
+                    <p>
+                        Rich chocolate flavour.
+                    </p>
+
+                </div>
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <h3>
+                        Red Velvet
+                    </h3>
+
+                    <p>
+                        Rich, smooth and distinctive.
+                    </p>
+
+                </div>
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-lemon"></i>
+                    </div>
+
+                    <h3>
+                        Lemon
+                    </h3>
+
+                    <p>
+                        Fresh and lightly citrusy.
+                    </p>
+
+                </div>
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-strawberry"></i>
+                    </div>
+
+                    <h3>
+                        Strawberry
+                    </h3>
+
+                    <p>
+                        Sweet and fruity.
+                    </p>
+
+                </div>
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+
+                    <h3>
+                        Carrot
+                    </h3>
+
+                    <p>
+                        Moist cake with a unique flavour.
+                    </p>
+
+                </div>
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-coconut"></i>
+                    </div>
+
+                    <h3>
+                        Coconut
+                    </h3>
+
+                    <p>
+                        Soft cake with coconut flavour.
+                    </p>
+
+                </div>
+
+
+                <div class="flavour-card">
+
+                    <div class="flavour-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+
+                    <h3>
+                        Mixed Flavour
+                    </h3>
+
+                    <p>
+                        Combine flavours for a customized cake.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRICING -->
+
+        <section class="pricing-section">
+
+            <div class="pricing-box">
+
+
+                <div class="pricing-header">
+
+                    <h2>
+                        Example Cake Price Range
+                    </h2>
+
+                    <p>
+                        Prices depend on flavour, size, design and decoration.
+                    </p>
+
+                </div>
+
+
+                <table class="price-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Size
+                            </th>
+
+                            <th>
+                                Basic Flavours
+                            </th>
+
+                            <th>
+                                Premium Flavours
+                            </th>
+
+                            <th>
+                                Custom / Premium Design
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td>
+                                1 kg
+                            </td>
+
+                            <td>
+                                TZS 50,000 – 70,000
+                            </td>
+
+                            <td>
+                                TZS 70,000 – 85,000
+                            </td>
+
+                            <td>
+                                TZS 80,000 – 100,000
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                1.5 kg
+                            </td>
+
+                            <td>
+                                TZS 70,000 – 90,000
+                            </td>
+
+                            <td>
+                                TZS 90,000 – 115,000
+                            </td>
+
+                            <td>
+                                TZS 110,000 – 140,000
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                2 kg
+                            </td>
+
+                            <td>
+                                TZS 90,000 – 120,000
+                            </td>
+
+                            <td>
+                                TZS 120,000 – 150,000
+                            </td>
+
+                            <td>
+                                TZS 140,000 – 180,000
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                3 kg
+                            </td>
+
+                            <td>
+                                TZS 130,000 – 170,000
+                            </td>
+
+                            <td>
+                                TZS 170,000 – 220,000
+                            </td>
+
+                            <td>
+                                TZS 210,000 – 280,000
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                4 kg+
+                            </td>
+
+                            <td>
+                                From TZS 170,000
+                            </td>
+
+                            <td>
+                                From TZS 220,000
+                            </td>
+
+                            <td>
+                                Custom Quote
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+
+                <div class="price-note">
+
+                    <strong>
+                        Please note:
+                    </strong>
+
+                    The prices above are example ranges for the website.
+                    The final price may change depending on the chosen
+                    flavour, cake size, number of layers, filling,
+                    frosting, decoration, theme, toppers and other
+                    custom requirements.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CUSTOM REQUEST -->
+
+        <section class="custom-section">
+
+            <div class="custom-box">
+
+                <h2>
+                    Need A Custom Cake?
+                </h2>
+
+                <p>
+                    Send us your event date, cake size, flavour,
+                    preferred design and budget. We can prepare
+                    a cake proposal according to your requirements.
+                </p>
+
+                <a
+                    href="cake-bookingform.php"
+                    class="custom-btn"
+                >
+
+                    Request A Cake
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <div class="logo">
+                    <span>NUU</span>STAR
+                    <small>EVENTS</small>
+                </div>
+
+                <p>
+                    Creating beautiful, memorable and professionally
+                    organized events for every special occasion.
+                </p>
+
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="index.php">
+                    Home
+                </a>
+
+                <a href="index.php#packages">
+                    Packages
+                </a>
+
+                <a href="index.php#services">
+                    Services
+                </a>
+
+                <a href="venues.php">
+                    Venues
+                </a>
+
+                <a href="tickets.php">
+                    Tickets
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Our Services
+                </h4>
+
+                <a href="venues.php">
+                    Venue Selection
+                </a>
+
+                <a href="catering.php">
+                    Catering
+                </a>
+
+                <a href="cakes.php">
+                    Cakes
+                </a>
+
+                <a href="index.php#services">
+                    Decoration
+                </a>
+
+                <a href="index.php#services">
+                    Photography
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact Us
+                </h4>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    0624 947 668
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Dar es Salaam, Tanzania
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-globe"></i>
+                    www.nuustar.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    &copy; 2026 Nuustar Events.
+                    All Rights Reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

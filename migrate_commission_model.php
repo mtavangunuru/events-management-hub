@@ -1,0 +1,2 @@
+<?php
+// Migration already completed.

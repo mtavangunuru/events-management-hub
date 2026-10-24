@@ -1,0 +1,2245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cake Order Confirmation | Nuustar Events</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* ==========================================
+           CAKE CONFIRMATION
+        ========================================== */
+
+        .cake-confirmation-page {
+
+            min-height: 100vh;
+
+            background:
+                var(--gray-light);
+
+            padding:
+                120px 20px 70px;
+
+        }
+
+
+        .confirmation-container {
+
+            max-width:
+                950px;
+
+            margin:
+                0 auto;
+
+        }
+
+
+        /* SUCCESS */
+
+        .success-section {
+
+            text-align:
+                center;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .success-icon {
+
+            width:
+                72px;
+
+            height:
+                72px;
+
+            margin:
+                0 auto 18px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--yellow);
+
+            color:
+                var(--blue);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                30px;
+
+        }
+
+
+        .success-section h1 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            color:
+                var(--blue);
+
+            font-size:
+                40px;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .success-section p {
+
+            color:
+                var(--gray);
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* REFERENCE */
+
+        .reference-box {
+
+            display:
+                inline-block;
+
+            margin-top:
+                20px;
+
+            background:
+                var(--blue-light);
+
+            border-radius:
+                10px;
+
+            padding:
+                13px 24px;
+
+        }
+
+
+        .reference-box span {
+
+            display:
+                block;
+
+            font-size:
+                11px;
+
+            color:
+                var(--gray);
+
+            margin-bottom:
+                4px;
+
+        }
+
+
+        .reference-box strong {
+
+            color:
+                var(--blue);
+
+            font-size:
+                20px;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        /* MAIN CARD */
+
+        .order-card {
+
+            background:
+                var(--white);
+
+            border-radius:
+                18px;
+
+            overflow:
+                hidden;
+
+            box-shadow:
+                var(--shadow-lg);
+
+        }
+
+
+        /* HEADER */
+
+        .order-header {
+
+            background:
+                var(--blue);
+
+            color:
+                var(--white);
+
+            padding:
+                30px;
+
+        }
+
+
+        .order-brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+        }
+
+
+        .order-brand h2 {
+
+            margin:
+                0;
+
+            font-size:
+                25px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        .order-brand h2 span {
+
+            color:
+                var(--yellow);
+
+        }
+
+
+        .order-label {
+
+            background:
+                var(--yellow);
+
+            color:
+                var(--blue);
+
+            padding:
+                7px 13px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .order-header-title {
+
+            margin-top:
+                25px;
+
+        }
+
+
+        .order-header-title h3 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                30px;
+
+            margin-bottom:
+                7px;
+
+        }
+
+
+        .order-header-title p {
+
+            margin:
+                0;
+
+            color:
+                rgba(255,255,255,0.85);
+
+            font-size:
+                13px;
+
+        }
+
+
+        /* CONTENT */
+
+        .order-content {
+
+            padding:
+                30px;
+
+        }
+
+
+        .section-title {
+
+            color:
+                var(--blue);
+
+            font-size:
+                20px;
+
+            margin-bottom:
+                20px;
+
+            border-bottom:
+                2px solid var(--yellow);
+
+            padding-bottom:
+                10px;
+
+        }
+
+
+        .section-title i {
+
+            color:
+                var(--yellow-dark);
+
+            margin-right:
+                6px;
+
+        }
+
+
+        .detail-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                25px;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .detail-section {
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                10px;
+
+            padding:
+                20px;
+
+        }
+
+
+        .detail-section h4 {
+
+            color:
+                var(--blue);
+
+            margin-bottom:
+                15px;
+
+            font-size:
+                16px;
+
+        }
+
+
+        .detail-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            padding:
+                9px 0;
+
+            border-bottom:
+                1px solid var(--border);
+
+            font-size:
+                13px;
+
+        }
+
+
+        .detail-row:last-child {
+
+            border-bottom:
+                none;
+
+        }
+
+
+        .detail-row span:first-child {
+
+            color:
+                var(--gray);
+
+        }
+
+
+        .detail-row span:last-child {
+
+            color:
+                var(--blue);
+
+            font-weight:
+                700;
+
+            text-align:
+                right;
+
+        }
+
+
+        /* SPECIAL REQUIREMENTS */
+
+        .requirements-box {
+
+            background:
+                var(--gray-light);
+
+            border-radius:
+                9px;
+
+            padding:
+                17px;
+
+            color:
+                var(--gray-dark);
+
+            font-size:
+                13px;
+
+            line-height:
+                1.7;
+
+            margin-top:
+                10px;
+
+        }
+
+
+        /* PRICE */
+
+        .price-section {
+
+            background:
+                var(--yellow-light);
+
+            border-radius:
+                10px;
+
+            padding:
+                22px;
+
+            margin-top:
+                10px;
+
+        }
+
+
+        .price-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            padding:
+                7px 0;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .price-row span:first-child {
+
+            color:
+                var(--gray-dark);
+
+        }
+
+
+        .price-row span:last-child {
+
+            color:
+                var(--blue);
+
+            font-weight:
+                700;
+
+        }
+
+
+        .total-row {
+
+            border-top:
+                1px solid rgba(11,45,92,0.15);
+
+            margin-top:
+                10px;
+
+            padding-top:
+                15px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            color:
+                var(--blue);
+
+            font-size:
+                22px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* STATUS */
+
+        .status-box {
+
+            margin-top:
+                25px;
+
+            background:
+                var(--blue-light);
+
+            padding:
+                18px;
+
+            border-radius:
+                10px;
+
+            color:
+                var(--gray-dark);
+
+            line-height:
+                1.7;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .status-box i {
+
+            color:
+                var(--yellow-dark);
+
+            margin-right:
+                5px;
+
+        }
+
+
+        .status-badge {
+
+            display:
+                inline-block;
+
+            background:
+                var(--yellow);
+
+            color:
+                var(--blue);
+
+            padding:
+                5px 10px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            margin-left:
+                5px;
+
+        }
+
+
+        /* ACTIONS */
+
+        .action-buttons {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                12px;
+
+            margin-top:
+                25px;
+
+        }
+
+
+        .action-btn {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                13px 20px;
+
+            border-radius:
+                8px;
+
+            border:
+                none;
+
+            text-decoration:
+                none;
+
+            cursor:
+                pointer;
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            transition:
+                var(--transition);
+
+        }
+
+
+        .btn-home {
+
+            background:
+                var(--blue);
+
+            color:
+                var(--white);
+
+        }
+
+
+        .btn-home:hover {
+
+            background:
+                var(--blue-dark);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .btn-print {
+
+            background:
+                var(--yellow);
+
+            color:
+                var(--blue);
+
+        }
+
+
+        .btn-print:hover {
+
+            background:
+                var(--yellow-dark);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .btn-whatsapp {
+
+            background:
+                #25D366;
+
+            color:
+                white;
+
+        }
+
+
+        .btn-whatsapp:hover {
+
+            background:
+                #1da851;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .btn-back {
+
+            background:
+                var(--white);
+
+            color:
+                var(--blue);
+
+            border:
+                1px solid var(--blue);
+
+        }
+
+
+        .btn-back:hover {
+
+            background:
+                var(--blue-light);
+
+        }
+
+
+        /* NO ORDER */
+
+        .no-order {
+
+            display:
+                none;
+
+            background:
+                var(--white);
+
+            border-radius:
+                var(--radius);
+
+            box-shadow:
+                var(--shadow-md);
+
+            padding:
+                60px 25px;
+
+            text-align:
+                center;
+
+        }
+
+
+        .no-order i {
+
+            font-size:
+                50px;
+
+            color:
+                var(--yellow-dark);
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .no-order h2 {
+
+            color:
+                var(--blue);
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .no-order p {
+
+            color:
+                var(--gray);
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            .cake-confirmation-page {
+
+                padding:
+                    100px 15px 50px;
+
+            }
+
+
+            .success-section h1 {
+
+                font-size:
+                    31px;
+
+            }
+
+
+            .order-header {
+
+                padding:
+                    23px 20px;
+
+            }
+
+
+            .order-content {
+
+                padding:
+                    22px 20px;
+
+            }
+
+
+            .detail-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .order-brand {
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .order-header-title h3 {
+
+                font-size:
+                    25px;
+
+            }
+
+
+            .detail-row {
+
+                flex-direction:
+                    column;
+
+                gap:
+                    4px;
+
+            }
+
+
+            .detail-row span:last-child {
+
+                text-align:
+                    left;
+
+            }
+
+
+            .total-row {
+
+                flex-direction:
+                    column;
+
+            }
+
+        }
+
+
+        /* PRINT */
+
+        @media print {
+
+            .navbar,
+            .footer,
+            .success-section,
+            .action-buttons,
+            .status-box {
+
+                display:
+                    none !important;
+
+            }
+
+
+            .cake-confirmation-page {
+
+                padding:
+                    0;
+
+                background:
+                    white;
+
+            }
+
+
+            .confirmation-container {
+
+                max-width:
+                    100%;
+
+            }
+
+
+            .order-card {
+
+                box-shadow:
+                    none;
+
+                border:
+                    1px solid #ddd;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+
+                <span>NUU</span>STAR
+
+                <small>
+                    EVENTS
+                </small>
+
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#packages">
+                    Packages
+                </a>
+
+                <a href="index.html#services">
+                    Services
+                </a>
+
+                <a href="venues.html">
+                    Venues
+                </a>
+
+                <a href="tickets.html">
+                    Tickets
+                </a>
+
+                <a href="index.html#contact">
+                    Contact
+                </a>
+
+                <a
+                    href="index.html#packages"
+                    class="nav-book-btn"
+                >
+                    Book Your Event
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="cake-confirmation-page">
+
+
+        <div class="confirmation-container">
+
+
+            <!-- SUCCESS -->
+
+            <div class="success-section">
+
+                <div class="success-icon">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </div>
+
+
+                <h1>
+                    Cake Request Received!
+                </h1>
+
+
+                <p>
+                    Thank you for choosing Nuustar Events.
+                    We have received your cake request and our team
+                    will contact you to confirm the final design and price.
+                </p>
+
+
+                <div class="reference-box">
+
+                    <span>
+                        Cake Order Reference
+                    </span>
+
+                    <strong id="orderReference">
+                        ---
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ORDER CARD
+            ========================== -->
+
+            <div class="order-card" id="orderCard">
+
+
+                <!-- HEADER -->
+
+                <div class="order-header">
+
+                    <div class="order-brand">
+
+                        <h2>
+                            <span>NUU</span>STAR
+                            EVENTS
+                        </h2>
+
+
+                        <div class="order-label">
+                            CAKE ORDER
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-header-title">
+
+                        <h3 id="headerCakeName">
+                            Cake Order
+                        </h3>
+
+                        <p>
+                            Your selected cake details
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="order-content">
+
+
+                    <h2 class="section-title">
+
+                        <i class="fa-solid fa-cake-candles"></i>
+
+                        Cake Details
+
+                    </h2>
+
+
+                    <div class="detail-grid">
+
+
+                        <!-- CAKE -->
+
+                        <div class="detail-section">
+
+                            <h4>
+                                Your Cake
+                            </h4>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Size
+                                </span>
+
+                                <span id="cakeSize">
+                                    ---
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Flavour
+                                </span>
+
+                                <span id="cakeFlavour">
+                                    ---
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Design
+                                </span>
+
+                                <span id="cakeDesign">
+                                    ---
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Quantity
+                                </span>
+
+                                <span id="cakeQuantity">
+                                    ---
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EVENT -->
+
+                        <div class="detail-section">
+
+                            <h4>
+                                Event Details
+                            </h4>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Event Type
+                                </span>
+
+                                <span id="eventType">
+                                    ---
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Event Date
+                                </span>
+
+                                <span id="eventDate">
+                                    ---
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Event Time
+                                </span>
+
+                                <span id="eventTime">
+                                    ---
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Location
+                                </span>
+
+                                <span id="location">
+                                    ---
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span>
+                                    Delivery
+                                </span>
+
+                                <span id="deliveryMethod">
+                                    ---
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- CUSTOMER -->
+
+                    <h2 class="section-title">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Customer Information
+
+                    </h2>
+
+
+                    <div class="detail-section">
+
+                        <div class="detail-row">
+
+                            <span>
+                                Full Name
+                            </span>
+
+                            <span id="customerName">
+                                ---
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Phone
+                            </span>
+
+                            <span id="customerPhone">
+                                ---
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                WhatsApp
+                            </span>
+
+                            <span id="customerWhatsApp">
+                                ---
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Email
+                            </span>
+
+                            <span id="customerEmail">
+                                ---
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- REQUIREMENTS -->
+
+                    <h2 class="section-title"
+                        style="margin-top: 30px;">
+
+                        <i class="fa-solid fa-message"></i>
+
+                        Special Requirements
+
+                    </h2>
+
+
+                    <div class="requirements-box"
+                         id="specialRequirements">
+
+                        No additional requirements provided.
+
+                    </div>
+
+
+                    <!-- PRICE -->
+
+                    <h2 class="section-title"
+                        style="margin-top: 30px;">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                        Estimated Price
+
+                    </h2>
+
+
+                    <div class="price-section">
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Price Per Cake
+                            </span>
+
+                            <span id="pricePerCake">
+                                TZS 0
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Number of Cakes
+                            </span>
+
+                            <span id="priceQuantity">
+                                1
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Cake Cost
+                            </span>
+
+                            <span id="cakeCost">
+                                TZS 0
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Design Fee
+                            </span>
+
+                            <span id="designFee">
+                                TZS 0
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Delivery Fee
+                            </span>
+
+                            <span id="deliveryFee">
+                                TZS 0
+                            </span>
+
+                        </div>
+
+
+                        <div class="total-row">
+
+                            <span>
+                                Estimated Total
+                            </span>
+
+                            <span id="estimatedTotal">
+                                TZS 0
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="status-box">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        Your order status:
+
+                        <span
+                            class="status-badge"
+                            id="orderStatus"
+                        >
+                            PENDING
+                        </span>
+
+                        <br>
+
+                        This is a cake request, not yet a final
+                        confirmed order. Nuustar Events will contact
+                        you to confirm the design, availability,
+                        final price and payment arrangements.
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="action-buttons">
+
+
+                <button
+                    type="button"
+                    class="action-btn btn-print"
+                    onclick="window.print()"
+                >
+
+                    <i class="fa-solid fa-print"></i>
+
+                    Print Order
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="action-btn btn-whatsapp"
+                    onclick="sendWhatsApp()"
+                >
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                    Send via WhatsApp
+
+                </button>
+
+
+                <a
+                    href="cakes.html"
+                    class="action-btn btn-back"
+                >
+
+                    <i class="fa-solid fa-cake-candles"></i>
+
+                    Browse Cakes
+
+                </a>
+
+
+                <a
+                    href="index.html"
+                    class="action-btn btn-home"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Back to Home
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             NO ORDER
+        ========================== -->
+
+        <div
+            class="confirmation-container no-order"
+            id="noOrder"
+        >
+
+            <i class="fa-solid fa-file-circle-xmark"></i>
+
+
+            <h2>
+                No Cake Order Found
+            </h2>
+
+
+            <p>
+                We could not find a cake request on this device.
+                Please return to the cakes page and submit a request.
+            </p>
+
+
+            <a
+                href="cakes.html"
+                class="action-btn btn-home"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Browse Cakes
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <div class="logo">
+
+                    <span>NUU</span>STAR
+
+                    <small>
+                        EVENTS
+                    </small>
+
+                </div>
+
+
+                <p>
+                    Creating beautiful, memorable and professionally
+                    organized events for every special occasion.
+                </p>
+
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#packages">
+                    Packages
+                </a>
+
+                <a href="index.html#services">
+                    Services
+                </a>
+
+                <a href="venues.html">
+                    Venues
+                </a>
+
+                <a href="tickets.html">
+                    Tickets
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Our Services
+                </h4>
+
+                <a href="venues.html">
+                    Venue Selection
+                </a>
+
+                <a href="catering.html">
+                    Catering
+                </a>
+
+                <a href="cakes.html">
+                    Cakes
+                </a>
+
+                <a href="index.html#services">
+                    Decoration
+                </a>
+
+                <a href="index.html#services">
+                    Photography
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact Us
+                </h4>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    0624 947 668
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Dar es Salaam, Tanzania
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-globe"></i>
+                    www.nuustar.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    &copy; 2026 Nuustar Events.
+                    All Rights Reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* ==========================================
+           GET SAVED ORDER
+        ========================================== */
+
+        const savedOrder =
+            localStorage.getItem(
+                "nuustarCakeOrder"
+            );
+
+
+        const orderCard =
+            document.getElementById(
+                "orderCard"
+            );
+
+
+        const noOrder =
+            document.getElementById(
+                "noOrder"
+            );
+
+
+        /* ==========================================
+           CURRENCY
+        ========================================== */
+
+        function formatCurrency(amount) {
+
+            return "TZS " +
+                Number(amount).toLocaleString("en-TZ");
+
+        }
+
+
+        /* ==========================================
+           FORMAT DATE
+        ========================================== */
+
+        function formatDate(dateValue) {
+
+            if (!dateValue) {
+
+                return "Not provided";
+
+            }
+
+
+            const date =
+                new Date(
+                    dateValue + "T00:00:00"
+                );
+
+
+            return date.toLocaleDateString(
+                "en-GB",
+                {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        /* ==========================================
+           LOAD ORDER
+        ========================================== */
+
+        if (!savedOrder) {
+
+            orderCard.style.display =
+                "none";
+
+            document.querySelector(
+                ".success-section"
+            ).style.display =
+                "none";
+
+            noOrder.style.display =
+                "block";
+
+        } else {
+
+            let order = null;
+
+
+            try {
+
+                order =
+                    JSON.parse(savedOrder);
+
+            } catch (error) {
+
+                console.error(
+                    "Could not read cake order:",
+                    error
+                );
+
+                orderCard.style.display =
+                    "none";
+
+                document.querySelector(
+                    ".success-section"
+                ).style.display =
+                    "none";
+
+                noOrder.style.display =
+                    "block";
+
+            }
+
+
+            if (order) {
+
+                const cake =
+                    order.cake || {};
+
+
+                const event =
+                    order.event || {};
+
+
+                const customer =
+                    order.customer || {};
+
+
+                const delivery =
+                    order.delivery || {};
+
+
+                const pricing =
+                    order.pricing || {};
+
+
+                /* =================================
+                   REFERENCE
+                ================================= */
+
+                document.getElementById(
+                    "orderReference"
+                ).textContent =
+                    order.orderId ||
+                    "CAKE-PENDING";
+
+
+                /* =================================
+                   CAKE
+                ================================= */
+
+                document.getElementById(
+                    "headerCakeName"
+                ).textContent =
+                    (cake.flavour ||
+                    "Custom") +
+                    " Cake";
+
+
+                document.getElementById(
+                    "cakeSize"
+                ).textContent =
+                    cake.size
+                        ? cake.size + " kg"
+                        : "---";
+
+
+                document.getElementById(
+                    "cakeFlavour"
+                ).textContent =
+                    cake.flavour ||
+                    "---";
+
+
+                document.getElementById(
+                    "cakeDesign"
+                ).textContent =
+                    cake.design ||
+                    "---";
+
+
+                document.getElementById(
+                    "cakeQuantity"
+                ).textContent =
+                    cake.numberOfCakes ||
+                    1;
+
+
+                /* =================================
+                   EVENT
+                ================================= */
+
+                document.getElementById(
+                    "eventType"
+                ).textContent =
+                    event.type ||
+                    "---";
+
+
+                document.getElementById(
+                    "eventDate"
+                ).textContent =
+                    formatDate(
+                        event.date
+                    );
+
+
+                document.getElementById(
+                    "eventTime"
+                ).textContent =
+                    event.time ||
+                    "Not provided";
+
+
+                document.getElementById(
+                    "location"
+                ).textContent =
+                    event.location ||
+                    "---";
+
+
+                document.getElementById(
+                    "deliveryMethod"
+                ).textContent =
+                    delivery.method ||
+                    "---";
+
+
+                /* =================================
+                   CUSTOMER
+                ================================= */
+
+                document.getElementById(
+                    "customerName"
+                ).textContent =
+                    customer.fullName ||
+                    "---";
+
+
+                document.getElementById(
+                    "customerPhone"
+                ).textContent =
+                    customer.phone ||
+                    "---";
+
+
+                document.getElementById(
+                    "customerWhatsApp"
+                ).textContent =
+                    customer.whatsapp ||
+                    "Not provided";
+
+
+                document.getElementById(
+                    "customerEmail"
+                ).textContent =
+                    customer.email ||
+                    "Not provided";
+
+
+                /* =================================
+                   REQUIREMENTS
+                ================================= */
+
+                document.getElementById(
+                    "specialRequirements"
+                ).textContent =
+                    order.specialRequirements ||
+                    "No additional requirements provided.";
+
+
+                /* =================================
+                   PRICE
+                ================================= */
+
+                document.getElementById(
+                    "pricePerCake"
+                ).textContent =
+                    formatCurrency(
+                        pricing.pricePerCake || 0
+                    );
+
+
+                document.getElementById(
+                    "priceQuantity"
+                ).textContent =
+                    cake.numberOfCakes ||
+                    1;
+
+
+                document.getElementById(
+                    "cakeCost"
+                ).textContent =
+                    formatCurrency(
+                        pricing.cakeCost || 0
+                    );
+
+
+                document.getElementById(
+                    "designFee"
+                ).textContent =
+                    formatCurrency(
+                        pricing.designFee || 0
+                    );
+
+
+                document.getElementById(
+                    "deliveryFee"
+                ).textContent =
+                    formatCurrency(
+                        pricing.deliveryFee || 0
+                    );
+
+
+                document.getElementById(
+                    "estimatedTotal"
+                ).textContent =
+                    formatCurrency(
+                        pricing.estimatedTotal || 0
+                    );
+
+
+                /* STATUS */
+
+                document.getElementById(
+                    "orderStatus"
+                ).textContent =
+                    order.status ||
+                    "PENDING";
+
+            }
+
+        }
+
+
+        /* ==========================================
+           WHATSAPP
+        ========================================== */
+
+        function sendWhatsApp() {
+
+            if (!savedOrder) {
+
+                alert(
+                    "Cake order information was not found."
+                );
+
+                return;
+
+            }
+
+
+            const order =
+                JSON.parse(savedOrder);
+
+
+            const cake =
+                order.cake || {};
+
+
+            const event =
+                order.event || {};
+
+
+            const customer =
+                order.customer || {};
+
+
+            const pricing =
+                order.pricing || {};
+
+
+            let whatsappNumber =
+                customer.whatsapp ||
+                customer.phone ||
+                "";
+
+
+            /*
+                Convert Tanzania local number
+                0624xxxxxx → 255624xxxxxx
+            */
+
+            whatsappNumber =
+                whatsappNumber.replace(
+                    /\D/g,
+                    ""
+                );
+
+
+            if (
+                whatsappNumber.startsWith("0") &&
+                whatsappNumber.length === 10
+            ) {
+
+                whatsappNumber =
+                    "255" +
+                    whatsappNumber.substring(1);
+
+            }
+
+
+            const message =
+`Hello Nuustar Events,
+
+I have submitted a cake order request.
+
+Order Reference: ${order.orderId}
+
+Cake:
+${cake.size} kg ${cake.flavour}
+
+Design: ${cake.design}
+Quantity: ${cake.numberOfCakes}
+
+Event: ${event.type}
+Date: ${formatDate(event.date)}
+Location: ${event.location}
+
+Estimated Total:
+${formatCurrency(pricing.estimatedTotal)}
+
+Customer:
+${customer.fullName}
+
+Thank you.`;
+
+
+            let url;
+
+
+            if (whatsappNumber) {
+
+                url =
+                    "https://wa.me/" +
+                    whatsappNumber +
+                    "?text=" +
+                    encodeURIComponent(
+                        message
+                    );
+
+            } else {
+
+                url =
+                    "https://wa.me/?text=" +
+                    encodeURIComponent(
+                        message
+                    );
+
+            }
+
+
+            window.open(
+                url,
+                "_blank"
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

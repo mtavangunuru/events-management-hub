@@ -1,0 +1,1785 @@
+<?php
+
+require_once "connection.php";
+
+/*
+|--------------------------------------------------------------------------
+| GET SELECTED VENUE
+|--------------------------------------------------------------------------
+*/
+
+$venue_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+$venue = null;
+
+if ($venue_id > 0) {
+
+    $stmt = $conn->prepare(
+        "SELECT * FROM venues WHERE id = ? AND status = 'Available'"
+    );
+
+    $stmt->bind_param("i", $venue_id);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+
+        $venue = $result->fetch_assoc();
+
+    }
+
+    $stmt->close();
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| IF VENUE DOES NOT EXIST
+|--------------------------------------------------------------------------
+*/
+
+if (!$venue) {
+
+    die("
+        <div style='
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 80px 20px;
+        '>
+
+            <h2 style='color:#0b2d5c;'>
+                Venue Not Found
+            </h2>
+
+            <p style='color:#6b7280;'>
+                The venue you selected is no longer available.
+            </p>
+
+            <a
+                href='venues.php'
+                style='
+                    display:inline-block;
+                    margin-top:20px;
+                    padding:12px 22px;
+                    background:#0b2d5c;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:8px;
+                '>
+
+                Back to Venues
+
+            </a>
+
+        </div>
+    ");
+
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Book <?php echo htmlspecialchars($venue['venue_name']); ?> | Nuustar Events
+    </title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================
+           VENUE BOOKING PAGE
+        ========================================= */
+
+        .booking-page {
+            background: #f7f9fc;
+        }
+
+
+        /* =========================================
+           BOOKING HERO
+        ========================================= */
+
+        .booking-hero {
+            min-height: 360px;
+
+            background:
+                linear-gradient(
+                    rgba(7, 31, 64, 0.82),
+                    rgba(7, 31, 64, 0.82)
+                ),
+                url("images/venue.webp") center/cover no-repeat;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+            padding: 120px 20px 70px;
+        }
+
+        .booking-hero-content {
+            max-width: 800px;
+        }
+
+        .booking-hero-content span {
+            color: #f4c430;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            display: block;
+
+            margin-bottom: 15px;
+        }
+
+        .booking-hero-content h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 52px;
+
+            line-height: 1.2;
+
+            margin-bottom: 18px;
+        }
+
+        .booking-hero-content p {
+            color: #e5e7eb;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           BOOKING SECTION
+        ========================================= */
+
+        .booking-section {
+            padding: 80px 20px 100px;
+        }
+
+        .booking-container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 0.8fr 1.2fr;
+
+            gap: 35px;
+
+            align-items: start;
+        }
+
+
+        /* =========================================
+           BOOKING INFORMATION
+        ========================================= */
+
+        .booking-info {
+            background: #0b2d5c;
+
+            color: white;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px rgba(11, 45, 92, 0.15);
+        }
+
+        .booking-info-image {
+            height: 240px;
+
+            overflow: hidden;
+        }
+
+        .booking-info-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .booking-info-content {
+            padding: 30px;
+        }
+
+        .booking-info-content .label {
+            color: #f4c430;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 10px;
+        }
+
+        .booking-info-content h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 30px;
+
+            margin-bottom: 12px;
+        }
+
+        .booking-info-location {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #e5e7eb;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+        .booking-info-location i {
+            color: #f4c430;
+        }
+
+        .booking-info-description {
+            color: #dbe3ed;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* Venue Features */
+
+        .booking-features {
+            border-top: 1px solid rgba(255,255,255,0.15);
+
+            padding-top: 22px;
+        }
+
+        .booking-feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 15px;
+
+            color: #e5e7eb;
+
+            font-size: 13px;
+        }
+
+        .booking-feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .booking-feature i {
+            width: 32px;
+            height: 32px;
+
+            border-radius: 50%;
+
+            background: rgba(244,196,48,0.15);
+
+            color: #f4c430;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        /* =========================================
+           SELECTED VENUE PRICE
+        ========================================= */
+
+        .selected-venue-price {
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .selected-venue-price small {
+            display: block;
+
+            color: #dbe3ed;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+        .selected-venue-price strong {
+            color: #f4c430;
+
+            font-size: 22px;
+        }
+
+
+        /* =========================================
+           BOOKING FORM
+        ========================================= */
+
+        .booking-form-wrapper {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 10px 35px rgba(11, 45, 92, 0.08);
+
+            border: 1px solid #e5e7eb;
+        }
+
+        .booking-form-heading {
+            margin-bottom: 30px;
+        }
+
+        .booking-form-heading .label {
+            color: #f4c430;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 8px;
+        }
+
+        .booking-form-heading h2 {
+            font-family: "Playfair Display", serif;
+
+            color: #0b2d5c;
+
+            font-size: 32px;
+
+            margin-bottom: 8px;
+        }
+
+        .booking-form-heading p {
+            color: #6b7280;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           SELECTED VENUE NOTICE
+        ========================================= */
+
+        .selected-venue-notice {
+            background: #eaf2fb;
+
+            border-left: 4px solid #f4c430;
+
+            padding: 14px 16px;
+
+            border-radius: 6px;
+
+            margin-bottom: 25px;
+
+            color: #374151;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .selected-venue-notice strong {
+            color: #0b2d5c;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .booking-form {
+            width: 100%;
+        }
+
+        .form-row {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+
+            color: #0b2d5c;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #dca900;
+        }
+
+        .form-control {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #d9dee7;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-family: "Montserrat", sans-serif;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.3s ease;
+
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: #0b2d5c;
+
+            box-shadow:
+                0 0 0 3px rgba(11,45,92,0.08);
+        }
+
+        .form-control::placeholder {
+            color: #9ca3af;
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            min-height: 130px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           CHECKBOX
+        ========================================= */
+
+        .booking-agreement {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            margin: 10px 0 25px;
+        }
+
+        .booking-agreement input {
+            margin-top: 3px;
+
+            accent-color: #0b2d5c;
+        }
+
+        .booking-agreement label {
+            color: #6b7280;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           SUBMIT BUTTON
+        ========================================= */
+
+        .booking-submit {
+            width: 100%;
+
+            border: none;
+
+            background: #0b2d5c;
+
+            color: white;
+
+            padding: 15px 20px;
+
+            border-radius: 8px;
+
+            font-family: "Montserrat", sans-serif;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            transition: 0.3s ease;
+        }
+
+        .booking-submit:hover {
+            background: #f4c430;
+
+            color: #071f40;
+        }
+
+
+        /* =========================================
+           CONTACT NOTE
+        ========================================= */
+
+        .booking-note {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #fff7d6;
+
+            border-left: 4px solid #f4c430;
+
+            border-radius: 5px;
+
+            color: #374151;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .booking-note i {
+            color: #0b2d5c;
+
+            margin-right: 5px;
+        }
+
+
+        /* =========================================
+           HOW IT WORKS
+        ========================================= */
+
+        .how-booking-works {
+            background: #eaf2fb;
+
+            padding: 80px 20px;
+        }
+
+        .how-booking-container {
+            max-width: 1100px;
+
+            margin: auto;
+        }
+
+        .how-booking-heading {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .how-booking-heading .label {
+            color: #f4c430;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+        .how-booking-heading h2 {
+            font-family: "Playfair Display", serif;
+
+            color: #0b2d5c;
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+        .how-booking-heading p {
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+        .booking-steps {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .booking-step {
+            background: white;
+
+            padding: 30px 25px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px rgba(11,45,92,0.06);
+        }
+
+        .step-number {
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: #0b2d5c;
+
+            color: #f4c430;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 800;
+
+            font-size: 18px;
+        }
+
+        .booking-step h3 {
+            color: #0b2d5c;
+
+            font-size: 17px;
+
+            margin-bottom: 10px;
+        }
+
+        .booking-step p {
+            color: #6b7280;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-info {
+                max-width: 700px;
+
+                margin: auto;
+            }
+
+            .booking-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-hero-content h1 {
+                font-size: 44px;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .booking-hero {
+                min-height: 330px;
+
+                padding-top: 110px;
+            }
+
+            .booking-hero-content h1 {
+                font-size: 36px;
+            }
+
+            .booking-hero-content p {
+                font-size: 14px;
+            }
+
+            .booking-section {
+                padding: 55px 15px 70px;
+            }
+
+            .booking-form-wrapper {
+                padding: 25px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+            .form-row .form-group {
+                margin-bottom: 20px;
+            }
+
+            .booking-info-content {
+                padding: 25px 20px;
+            }
+
+            .booking-info-content h2 {
+                font-size: 26px;
+            }
+
+            .how-booking-works {
+                padding: 60px 15px;
+            }
+
+            .how-booking-heading h2 {
+                font-size: 32px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body class="booking-page">
+
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="index.php" class="logo">
+            <span>NUU</span>STAR
+            <small>EVENTS</small>
+        </a>
+
+
+        <nav class="nav-menu">
+
+            <a href="index.php">
+                Home
+            </a>
+
+            <a href="index.php#packages">
+                Packages
+            </a>
+
+            <a href="index.php#services">
+                Services
+            </a>
+
+            <a href="venues.php">
+                Venues
+            </a>
+
+            <a href="index.php#tickets">
+                Tickets
+            </a>
+
+            <a href="index.php#contact">
+                Contact
+            </a>
+
+            <a href="index.php#book" class="nav-button">
+                Book Your Event
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="booking-hero">
+
+    <div class="booking-hero-content">
+
+        <span>
+            NUU STAR EVENTS
+        </span>
+
+        <h1>
+            Book Your Perfect Venue
+        </h1>
+
+        <p>
+            Tell us about your event and our team will help
+            you find and arrange the right venue for your
+            special occasion.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     BOOKING SECTION
+========================================= -->
+
+<section class="booking-section">
+
+    <div class="booking-container">
+
+
+        <!-- =================================
+             VENUE INFORMATION
+        ================================== -->
+
+        <div class="booking-info">
+
+            <div class="booking-info-image">
+
+                <?php if (!empty($venue['image'])): ?>
+
+                    <img
+                        src="<?php echo htmlspecialchars($venue['image']); ?>"
+                        alt="<?php echo htmlspecialchars($venue['venue_name']); ?>">
+
+                <?php else: ?>
+
+                    <img
+                        src="images/venue.webp"
+                        alt="Nuustar Events Venue">
+
+                <?php endif; ?>
+
+            </div>
+
+
+            <div class="booking-info-content">
+
+                <div class="label">
+                    Selected Venue
+                </div>
+
+                <h2>
+                    <?php echo htmlspecialchars($venue['venue_name']); ?>
+                </h2>
+
+
+                <div class="booking-info-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span>
+                        <?php echo htmlspecialchars($venue['location']); ?>
+                    </span>
+
+                </div>
+
+
+                <p class="booking-info-description">
+
+                    <?php
+
+                    if (!empty($venue['description'])) {
+
+                        echo htmlspecialchars($venue['description']);
+
+                    } else {
+
+                        echo "A beautiful venue suitable for your special event.";
+
+                    }
+
+                    ?>
+
+                </p>
+
+
+                <div class="booking-features">
+
+
+                    <div class="booking-feature">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <span>
+                            Capacity: Up to
+                            <?php echo number_format($venue['capacity']); ?>
+                            guests
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-feature">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        <span>
+                            Venue Type:
+                            <?php echo htmlspecialchars($venue['venue_type']); ?>
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-feature">
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                        <span>
+                            Flexible event dates
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-feature">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                        <span>
+                            Personal booking assistance
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="selected-venue-price">
+
+                    <small>
+                        Starting from
+                    </small>
+
+                    <strong>
+
+                        TSh
+                        <?php echo number_format($venue['price']); ?>
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             BOOKING FORM
+        ================================== -->
+
+        <div class="booking-form-wrapper">
+
+            <div class="booking-form-heading">
+
+                <div class="label">
+                    Reservation Request
+                </div>
+
+                <h2>
+                    Tell Us About Your Event
+                </h2>
+
+                <p>
+                    Complete the form below and our team will
+                    contact you to confirm venue availability
+                    and booking details.
+                </p>
+
+            </div>
+
+
+            <div class="selected-venue-notice">
+
+                <strong>
+                    Selected Venue:
+                </strong>
+
+                <?php echo htmlspecialchars($venue['venue_name']); ?>
+
+                —
+                <?php echo htmlspecialchars($venue['location']); ?>
+
+            </div>
+
+
+            <form
+                action="save-venue-booking.php"
+                method="POST"
+                class="booking-form">
+
+
+                <!-- SELECTED VENUE ID -->
+
+                <input
+                    type="hidden"
+                    name="venue_id"
+                    value="<?php echo $venue['id']; ?>">
+
+
+                <!-- Name + Phone -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            class="form-control"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            class="form-control"
+                            placeholder="e.g. 0624947668"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Email + Event Type -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Enter your email">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="event_type">
+                            Event Type
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="event_type"
+                            name="event_type"
+                            class="form-control"
+                            required>
+
+                            <option value="">
+                                Select event type
+                            </option>
+
+                            <option value="Wedding">
+                                Wedding
+                            </option>
+
+                            <option value="Birthday">
+                                Birthday
+                            </option>
+
+                            <option value="Anniversary">
+                                Anniversary
+                            </option>
+
+                            <option value="Corporate">
+                                Corporate Event
+                            </option>
+
+                            <option value="Meeting">
+                                Meeting
+                            </option>
+
+                            <option value="Conference">
+                                Conference
+                            </option>
+
+                            <option value="Party">
+                                Party
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Event Date + Guests -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="event_date">
+                            Event Date
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="event_date"
+                            name="event_date"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="guests">
+                            Number of Guests
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="guests"
+                            name="guests"
+                            class="form-control"
+                            placeholder="e.g. 100"
+                            min="1"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Venue Preference + Budget -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="venue_type">
+                            Preferred Venue Type
+                        </label>
+
+                        <select
+                            id="venue_type"
+                            name="venue_type"
+                            class="form-control">
+
+                            <option value="">
+                                Select venue type
+                            </option>
+
+                            <option value="Indoor">
+                                Indoor
+                            </option>
+
+                            <option value="Outdoor">
+                                Outdoor
+                            </option>
+
+                            <option value="Garden">
+                                Garden
+                            </option>
+
+                            <option value="Beach">
+                                Beach
+                            </option>
+
+                            <option value="Hotel">
+                                Hotel
+                            </option>
+
+                            <option value="Conference">
+                                Conference Hall
+                            </option>
+
+                            <option value="Any">
+                                Any / No Preference
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="budget">
+                            Estimated Budget
+                        </label>
+
+                        <select
+                            id="budget"
+                            name="budget"
+                            class="form-control">
+
+                            <option value="">
+                                Select budget
+                            </option>
+
+                            <option value="Below 300000">
+                                Below TSh 300,000
+                            </option>
+
+                            <option value="300000-500000">
+                                TSh 300,000 - 500,000
+                            </option>
+
+                            <option value="500000-1000000">
+                                TSh 500,000 - 1,000,000
+                            </option>
+
+                            <option value="1000000-2000000">
+                                TSh 1,000,000 - 2,000,000
+                            </option>
+
+                            <option value="Above 2000000">
+                                Above TSh 2,000,000
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Preferred Location -->
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Preferred Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        class="form-control"
+                        placeholder="e.g. Mbezi Beach, Masaki, Oyster Bay">
+
+                </div>
+
+
+
+                <!-- Message -->
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Additional Information
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        class="form-control"
+                        placeholder="Tell us anything else about your event..."></textarea>
+
+                </div>
+
+
+
+                <!-- Agreement -->
+
+                <div class="booking-agreement">
+
+                    <input
+                        type="checkbox"
+                        id="agreement"
+                        name="agreement"
+                        required>
+
+                    <label for="agreement">
+
+                        I confirm that the information I have
+                        provided is correct and I understand that
+                        this is a booking request subject to venue
+                        availability and confirmation.
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="booking-submit">
+
+                    Submit Booking Request
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                </button>
+
+
+
+                <!-- Note -->
+
+                <div class="booking-note">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    After submitting your request, Nuustar Events
+                    will contact you to discuss venue availability,
+                    pricing and the next steps.
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     HOW IT WORKS
+========================================= -->
+
+<section class="how-booking-works">
+
+    <div class="how-booking-container">
+
+
+        <div class="how-booking-heading">
+
+            <div class="label">
+                Simple Process
+            </div>
+
+            <h2>
+                How Venue Booking Works
+            </h2>
+
+            <p>
+                We make finding your event venue simple.
+            </p>
+
+        </div>
+
+
+
+        <div class="booking-steps">
+
+
+            <!-- Step 1 -->
+
+            <div class="booking-step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Send Your Request
+                </h3>
+
+                <p>
+                    Tell us your event type, date, number
+                    of guests, location and budget.
+                </p>
+
+            </div>
+
+
+
+            <!-- Step 2 -->
+
+            <div class="booking-step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    We Find Options
+                </h3>
+
+                <p>
+                    Our team reviews your requirements and
+                    identifies suitable venue options.
+                </p>
+
+            </div>
+
+
+
+            <!-- Step 3 -->
+
+            <div class="booking-step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Confirm Your Venue
+                </h3>
+
+                <p>
+                    We discuss availability and booking details
+                    with you before the venue is confirmed.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-container">
+
+
+        <!-- About -->
+
+        <div class="footer-column">
+
+            <a href="index.php" class="logo footer-logo">
+
+                <span>NUU</span>STAR
+
+                <small>
+                    EVENTS
+                </small>
+
+            </a>
+
+
+            <p>
+                Creating memorable events with beautiful
+                venues, elegant decoration, delicious catering
+                and professional event services.
+            </p>
+
+
+            <div class="social-links">
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Quick Links -->
+
+        <div class="footer-column">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="index.php">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php#packages">
+                        Packages
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php#services">
+                        Services
+                    </a>
+                </li>
+
+                <li>
+                    <a href="venues.php">
+                        Venues
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php#tickets">
+                        Tickets
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- Services -->
+
+        <div class="footer-column">
+
+            <h3>
+                Our Services
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="venues.php">
+                        Venue Finding
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php#services">
+                        Event Decoration
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php#services">
+                        Catering
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php#services">
+                        Photography
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php#services">
+                        Videography
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- Contact -->
+
+        <div class="footer-column">
+
+            <h3>
+                Contact Us
+            </h3>
+
+            <ul class="footer-contact">
+
+                <li>
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <span>
+                        0624 947 668
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span>
+                        Dar es Salaam, Tanzania
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-globe"></i>
+
+                    <span>
+                        www.nuustar.com
+                    </span>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+
+            &copy; 2026 Nuustar Events.
+            All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
